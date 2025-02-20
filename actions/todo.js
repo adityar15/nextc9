@@ -7,9 +7,27 @@
 export async function createTodo(todoTitle)
 {
     
-    // server side code
+   const res = await fetch("https://jsonplaceholder.typicode.com/todos", {
+    method: "POST",
+    body: JSON.stringify({
+        title: todoTitle,
+        userId: 1,
+        completed: false,
+        id: 99
+    })
+   })
 
-    console.log("ran on server", todoTitle)
-   
+   return await res.json()
 }
 
+
+export async function getTodos()
+{
+    const res = await fetch("https://jsonplaceholder.typicode.com/todos", {
+        // next: {
+        //     revalidate: 20
+        // }
+        // cache: "no-store"
+    })
+    return await res.json()
+}
